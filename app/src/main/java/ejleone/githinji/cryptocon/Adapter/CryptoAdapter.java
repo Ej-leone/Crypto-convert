@@ -129,7 +129,7 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
             super(itemView);
 
             cardclick = (CardView)itemView.findViewById(R.id.card_view);
-            img = (ImageView) itemView.findViewById(R.id.imgcasa);
+            img = (ImageView) itemView.findViewById(R.id.img_view);
             title= (TextView) itemView.findViewById(R.id.crypto_name);
             subtitle=(TextView)itemView.findViewById(R.id.txt_price);
         }

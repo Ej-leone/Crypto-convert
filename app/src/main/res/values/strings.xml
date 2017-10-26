@@ -3,4 +3,6 @@
 
     <string name="launch">Start</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="search_dialog">Type your Cryptocurrencies name</string>
 </resources>

@@ -25,8 +25,8 @@ public class IntroActivity extends OnboarderActivity {
 
         // Create your first page
         OnboarderPage onboarderPage1 = new OnboarderPage("CryptoConvert", "",R.mipmap.ic_launcher);
-        OnboarderPage onboarderPage2 = new OnboarderPage("Bitcoin", "Never go offline with,Affordable internet bundles", R.drawable.bitcoinlogo);
-        OnboarderPage onboarderPage3 = new OnboarderPage("Etheruem", "Pay water bills Stress free", R.drawable.ethereumlogo);
+        OnboarderPage onboarderPage2 = new OnboarderPage("Bitcoin", "Never go offline with,Affordable internet bundles", R.mipmap.ic_launcher);
+        OnboarderPage onboarderPage3 = new OnboarderPage("Etheruem", "Pay water bills Stress free", R.mipmap.ic_launcher);
 
         // You can define title and description colors (by default white)
         onboarderPage1.setTitleColor(R.color.white);
