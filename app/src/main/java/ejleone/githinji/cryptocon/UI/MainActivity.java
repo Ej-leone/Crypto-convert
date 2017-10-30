@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -17,7 +18,10 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerview_crpt)
     RecyclerView des;
+
+    @BindView(R.id.root_layout)
+    CoordinatorLayout cdl;
+
+
+    DialogAdapter desttt;
+
+    Snackbar dfg;
 
     CryptoAdapter assadpter;
 
@@ -71,6 +83,27 @@ public class MainActivity extends AppCompatActivity {
         assadpter.SetData(Chosen_cton);
 
 
+        desttt = new DialogAdapter( All_cton,context, new DialogAdapter.OnItemCheckListener()
+        {
+            @Override
+            public void onchecked(Crypto item)
+            {
+                //Todo:Check if Exist the add to   Arraylist
+                Boolean des =Chosen_cton.add(item);
+                Log.e(item.getCoinname()+"has been added?:", des.toString());
+                assadpter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onunchecked(Crypto item)
+            {
+                Boolean des =   Chosen_cton.remove(item);
+                Log.e(item.getCoinname()+"has been removed?:", des.toString());
+                assadpter.notifyDataSetChanged();
+
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                  //       .setAction("Action", null).show();
             }
         });
-    }
+        }
 
 
     public void get_all ()
@@ -111,10 +144,36 @@ public class MainActivity extends AppCompatActivity {
                                     if(wesde.get(key) instanceof JSONObject)
                                     {
                                         Log.e("information", wesde.get(key).toString());
+                                        Log.e("Kerry",key);
+                                        String img_url = "sorry";
+                                        //JSONObject des = wesde.get(key);    final DialogAdapter desttt
+                                        String Id  = ((JSONObject) wesde.get(key)).getString("Id");
+                                        String name  = ((JSONObject) wesde.get(key)).getString("FullName");
+                                        String coin_name  = ((JSONObject) wesde.get(key)).getString("CoinName");
+                                        try {
+                                             img_url = ((JSONObject) wesde.get(key)).getString("ImageUrl");
+                                        }
+                                        catch (Exception er)
+                                        {
+                                            //Todo:Handle Image errors
+                                            er.printStackTrace();
+                                        }
+                                        String Symbol  = ((JSONObject) wesde.get(key)).getString("Symbol");
+
+
+
+                                        Crypto dews = new Crypto(Id,name,img_url,Symbol,coin_name);
+
+                                        All_cton.add(dews);
+
+
 
                                     }
 
                                 }
+
+                                desttt.notifyDataSetChanged();
+
                             }
 
 
@@ -132,6 +191,12 @@ public class MainActivity extends AppCompatActivity {
             {
                 Log.e("Error",error.toString());
 
+                if (error instanceof NoConnectionError)
+                {
+                    //Todo:replace withSnackbar
+                    Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -142,16 +207,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void dialog_sedo ()
     {
-        Dialog dialog = new Dialog(context, R.style.DialogSlideAnim);
+        final Dialog dialog = new Dialog(context, R.style.DialogSlideAnim);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setContentView(R.layout.dialog_layout);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(true);
         dialog.show();
 
 
         TextInputEditText seedtext = dialog.findViewById(R.id.search_edittext);
+        TextView closee  = dialog.findViewById(R.id.close_dialog);
+
+        closee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
 
         RecyclerView rvTest = (RecyclerView) dialog.findViewById(R.id.dialog_recycler);
@@ -160,25 +233,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Todo:add item decorator later
         //rvTest.addItemDecoration(new  (context, android.R.drawable.divider_horizontal_dark));
-        final DialogAdapter desttt = new DialogAdapter( All_cton,context, new DialogAdapter.OnItemCheckListener()
-        {
-            @Override
-            public void onchecked(Crypto item)
-            {
-             //Todo:Check if Exist the add to   Arraylist
-                Chosen_cton.add(item);
 
-            }
-
-            @Override
-            public void onunchecked(Crypto item)
-            {
-             Boolean des =   Chosen_cton.remove(item);
-             Log.e(item.getCoinname()+"has been removed?:", des.toString());
-
-            }
-        });
         rvTest.setAdapter(desttt);
+
+        Log.e("Dialog list items", All_cton.toString());
 
         seedtext.addTextChangedListener(new TextWatcher() {
             @Override

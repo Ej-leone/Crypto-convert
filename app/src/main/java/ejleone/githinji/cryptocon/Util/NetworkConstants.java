@@ -9,4 +9,10 @@ public class NetworkConstants
     public static String main_url = "https://www.cryptocompare.com";
 
     public static String coin_list = main_url +"/api/data/coinlist/";
+
+    public static String price_coin_list ="https://min-api.cryptocompare.com/data/price";
+
+
 }
+
+

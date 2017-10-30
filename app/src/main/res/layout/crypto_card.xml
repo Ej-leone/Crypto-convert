@@ -21,9 +21,10 @@
 
         <TextView
             android:id="@+id/crypto_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bitcoin"
+            android:textAlignment="center"
             android:textSize="25sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
         
@@ -45,7 +46,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             android:textSize="25sp"
             android:textColor="@color/colorPrimary"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_view"/>
 

@@ -12,7 +12,7 @@
     <color name="bitcoinlogoback">#eaba41</color>
     <color name="mpesalogoback">#baf78f</color>
     <color name="ourlogoback">#4f65b5</color>
-
+    <color name="close_red">#ff1744</color>
 
 
 </resources>

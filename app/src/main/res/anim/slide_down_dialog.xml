@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android">
-
+<set>
+    <!-- Todo:    Fx the way dialog goes up and down
+<translate
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromydelta="0%p"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:toydelta="100%p">
+    </translate>
+     -->
 </set>
