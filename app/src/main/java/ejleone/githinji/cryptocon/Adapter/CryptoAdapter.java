@@ -130,24 +130,7 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
         });
 
 
-        holder.cardclick.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent dwe = new Intent(ctx, Convert.class);
-                Bundle aq = new Bundle();
-                aq.putString("name",fcrypto.getName());
-                aq.putString("id",fcrypto.getId());
-                aq.putString("cname",fcrypto.getCoinname());
-                aq.putString("symbol",fcrypto.getSymbol());
-                aq.putString("usdprice",holder.subtitle.getText().toString());
-                dwe.putExtra("bun",aq);
-                dwe.putExtra("conversions",budles);
-                ctx.startActivity(dwe);
 
-            }
-        });
 
 
         OkHttpClient  teken =  new OkHttpClient();
@@ -245,6 +228,27 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
                 }
             }
         } );
+
+
+        holder.cardclick.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent dwe = new Intent(ctx, Convert.class);
+               // TOdo:Create a transition to the next activity
+                Bundle aq = new Bundle();
+                aq.putString("name",fcrypto.getName());
+                aq.putString("id",fcrypto.getId());
+                aq.putString("cname",fcrypto.getCoinname());
+                aq.putString("symbol",fcrypto.getSymbol());
+                aq.putString("usdprice",holder.subtitle.getText().toString());
+                dwe.putExtra("bun",aq);
+                dwe.putExtra("conversions",budles);
+                ctx.startActivity(dwe);
+
+            }
+        });
     }
 
     @Override

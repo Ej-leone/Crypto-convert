@@ -196,7 +196,7 @@ public class Convert extends AppCompatActivity {
         String a = Cho_currency;
         String b = dftg.getText().toString();
 
-        //Todo:Add Validation
+        //Todo:Add Validation of the text
        //Convert to String
         float amount = Float.parseFloat(a);
         float curr = Float.parseFloat(b);

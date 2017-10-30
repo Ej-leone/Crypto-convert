@@ -11,15 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ejleone.githinji.cryptocon.UI.MainActivity;
+import ejleone.githinji.cryptocon.Util.PrefManager;
+
 
 public class IntroActivity extends OnboarderActivity {
 
     List<OnboarderPage> onboarderPages;
+    PrefManager pref ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_intro);
+
+        pref = new PrefManager(this);
+        if (!pref.isFirstTimeLaunch())
+        {
+            startActivity(new Intent(IntroActivity.this,MainActivity.class));
+        }
 
         onboarderPages = new ArrayList<OnboarderPage>();
 
@@ -62,9 +71,10 @@ public class IntroActivity extends OnboarderActivity {
     public void onSkipButtonPressed() {
         // Optional: by default it skips onboarder to the end
         super.onSkipButtonPressed();
-        //Todo:Move from right to left
+
         // Define your actions when the user press 'Skip' button
         Intent ds  = new Intent(IntroActivity.this,MainActivity.class);
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
         startActivity(ds);
     }
 
@@ -72,6 +82,7 @@ public class IntroActivity extends OnboarderActivity {
     public void onFinishButtonPressed() {
         // Define your actions when the user press 'Finish' button
         Intent ds  = new Intent(IntroActivity.this,MainActivity.class);
+        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
         startActivity(ds);
     }
 
