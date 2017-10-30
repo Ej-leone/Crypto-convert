@@ -185,8 +185,10 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
                     // do something wih the result
                         Log.e("Response",response.body().string());
 
-                            String dddr =response.body().string();
-                            try {
+
+                            try
+                            {
+                                String dddr =response.body().string();
                            JSONObject dd = new JSONObject(dddr);
                            String price = dd.getString("USD");
                                 String p1 = dd.getString(Australiandollar);
@@ -234,8 +236,8 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
 
 
 
-                           holder.subtitle.setText("123333");
-                           holder.subtitle.setText(price);
+                         //  holder.subtitle.setText("123333");
+                         //  holder.subtitle.setText(price);
                         }
                         catch (Exception kl){
                             kl.printStackTrace();
