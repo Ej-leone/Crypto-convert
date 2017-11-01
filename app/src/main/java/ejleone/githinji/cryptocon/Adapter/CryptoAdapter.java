@@ -111,7 +111,11 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
 
         final Crypto  fcrypto  = cryptolist.get(position);
 
-        holder.title.setText(fcrypto.getName());
+        fcrypto.setCoinname("...");
+
+
+                holder.title.setText(fcrypto.getName());
+        holder.subtitle.setText(fcrypto.getCoinname());
         String img_url = NetworkConstants.main_url + fcrypto.getImgurl();
 
 
@@ -218,7 +222,9 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
                                 budles.putString(britishpound,p20);
 
 
-
+                                fcrypto.setCoinname(price);
+                                notifyDataSetChanged();
+                                Log.e("Trying to set adapter",price);
                          //  holder.subtitle.setText("123333");
                          //  holder.subtitle.setText(price);
                         }
@@ -246,6 +252,9 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
                 dwe.putExtra("bun",aq);
                 dwe.putExtra("conversions",budles);
                 ctx.startActivity(dwe);
+                //Todo:test
+
+
 
             }
         });

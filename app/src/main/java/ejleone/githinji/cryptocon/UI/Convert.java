@@ -57,7 +57,14 @@ public class Convert extends AppCompatActivity {
         String usdprice  = swaq.getString("usdprice");
 
 
-        final String p1 = sqaaz.getString(CryptoAdapter.Australiandollar);
+       final String p1;
+
+        if(sqaaz.getString(CryptoAdapter.Australiandollar) !=null){
+            p1 = sqaaz.getString(CryptoAdapter.Australiandollar);
+        }
+        else {
+             p1 = "0.00";
+        }
         final String p2 = sqaaz.getString(CryptoAdapter.britishpound);
         final String p3 = sqaaz.getString(CryptoAdapter.CentralAfricanCFAfranc);
         final String p4 = sqaaz.getString(CryptoAdapter.ChineseYuan);
