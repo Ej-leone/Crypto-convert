@@ -41,9 +41,10 @@ import ejleone.githinji.cryptocon.Adapter.CryptoAdapter;
 import ejleone.githinji.cryptocon.Adapter.DialogAdapter;
 import ejleone.githinji.cryptocon.Model.Crypto;
 import ejleone.githinji.cryptocon.R;
+import ejleone.githinji.cryptocon.Util.NetworkChangeReceiver;
 import ejleone.githinji.cryptocon.Util.NetworkConstants;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NetworkChangeReceiver.ConnectivityReceiverListener{
 
     @BindView(R.id.recyclerview_crpt)
     RecyclerView des;
@@ -260,4 +261,38 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-}
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+
+        Log.e("Network Change", ("woeva"));
+        if(!isConnected)
+        {
+
+            Snackbar bar = Snackbar.make(cdl,"No interenet Connection",Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Retry", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view)
+                        {
+                            //Todo:retry the code
+                        }
+                    }).setActionTextColor(getResources().getColor(R.color.colorPrimary));
+            bar.show();
+
+        }
+        else
+        {
+            Snackbar bar = Snackbar.make(cdl,"No interenet Connection",Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Retry", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view)
+                        {
+                            //Todo:retry the code
+                        }
+                    }).setActionTextColor(getResources().getColor(R.color.colorPrimary));
+            bar.show();
+
+        }
+
+    }
+    }
+

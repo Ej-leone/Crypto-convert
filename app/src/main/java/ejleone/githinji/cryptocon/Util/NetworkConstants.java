@@ -6,7 +6,7 @@ package ejleone.githinji.cryptocon.Util;
 
 public class NetworkConstants
 {
-    public static String main_url = "https://www.cryptocompare.com";
+    public static String main_url = "https://min-api.cryptocompare.com";
 
     public static String coin_list = main_url +"/api/data/coinlist/";
 
