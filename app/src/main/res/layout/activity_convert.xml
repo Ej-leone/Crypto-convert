@@ -103,12 +103,14 @@
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.v7.widget.AppCompatButton
+
                 android:id="@+id/Converr"
-                android:text="Convert"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:text="Convert"
+                android:textColor="@android:color/white" />
 
 
 
@@ -139,12 +141,13 @@
 
 
         <TextView
-            android:textAlignment="center"
-            android:text="23344"
             android:id="@+id/textview_result"
-            android:textSize="30sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="0.00"
+            android:textAlignment="center"
+            android:textColor="@color/close_red"
+            android:textSize="30sp" />
 
 
     </android.support.v7.widget.CardView>

@@ -1,6 +1,7 @@
 package ejleone.githinji.cryptocon.UI;
 
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatSpinner;
@@ -8,6 +9,7 @@ import android.support.v7.widget.ScrollingTabContainerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,6 +46,11 @@ public class Convert extends AppCompatActivity {
         setContentView(R.layout.activity_convert);
         ButterKnife.bind(this);
 
+        if(getSupportActionBar() != null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        }
         Bundle swaq = getIntent().getBundleExtra("bun");
 
         Bundle sqaaz  = getIntent().getBundleExtra("conversions");
@@ -86,8 +93,8 @@ public class Convert extends AppCompatActivity {
         final String p19 = sqaaz.getString(CryptoAdapter.UAEdirham);
         final String p20 = sqaaz.getString(CryptoAdapter.UgandanShilling);
 
-        String [] press = {CryptoAdapter.Australiandollar,CryptoAdapter.britishpound,CryptoAdapter.CentralAfricanCFAfranc,CryptoAdapter.CentralAfricanCFAfranc,CryptoAdapter.ChineseYuan,CryptoAdapter.Danishkrone,CryptoAdapter.EgyptianPound,CryptoAdapter.Ethiopianbirr,CryptoAdapter.Euro,CryptoAdapter.IndianRupee,CryptoAdapter.Iranianrial,CryptoAdapter.Jamaicandollar,CryptoAdapter.Japaneseyen,CryptoAdapter.KenyanShilling,CryptoAdapter.Malaysianringgit,CryptoAdapter.NigerianNaira,CryptoAdapter.Norwegiankrone,CryptoAdapter.Pakistanirupee,CryptoAdapter.RussianRubble,CryptoAdapter.UAEdirham,
-                CryptoAdapter.UgandanShilling};
+        String [] press = {"Australiandollar","britishpound","CentralAfricanCFAfranc","CentralAfricanCFAfranc","ChineseYuan","Danishkrone","EgyptianPound","Ethiopianbirr","Euro","IndianRupee","Iranianrial","Jamaicandollar","Japaneseyen","KenyanShilling","Malaysianringgit","NigerianNaira","Norwegiankrone","Pakistanirupee","RussianRubble","UAEdirham",
+                "UgandanShilling"};
         Log.e("Destoy",name + Id + Cname  + Symbol + "usdprice" + usdprice);
 
         des.setText("Enter the amount of "+name +" you wish to convert");
@@ -215,6 +222,17 @@ public class Convert extends AppCompatActivity {
         //Set the Appropriate TextVIew
 
         result.setText(String.valueOf(e3w));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
