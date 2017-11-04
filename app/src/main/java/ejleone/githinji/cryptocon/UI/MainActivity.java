@@ -123,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements NetworkChangeRece
 
     public void get_all ()
     {
+
+        Log.e("sdsds",NetworkConstants.coin_list);
         JsonObjectRequest uui = new JsonObjectRequest(Request.Method.GET, NetworkConstants.coin_list, null,
                 new Response.Listener<JSONObject>() {
                     @Override

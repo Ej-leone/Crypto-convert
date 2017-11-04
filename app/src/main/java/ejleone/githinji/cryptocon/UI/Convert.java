@@ -48,13 +48,14 @@ public class Convert extends AppCompatActivity {
 
         Bundle sqaaz  = getIntent().getBundleExtra("conversions");
 
-
+        Log.e("Bundles",sqaaz.toString()+ swaq.toString());
 
         String name  = swaq.getString("name");
         String Id  = swaq.getString("id");
         String Cname  = swaq.getString("cname");
         String Symbol  = swaq.getString("symbol");
         String usdprice  = swaq.getString("usdprice");
+
 
 
        final String p1;

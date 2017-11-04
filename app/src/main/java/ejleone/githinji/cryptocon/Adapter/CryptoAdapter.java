@@ -74,7 +74,7 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
     private ImageLoader imageLoader;
     VolleySingleton volleySingleton;
     public Context ctx;
-    public Bundle  budles;
+    public Bundle  budles = new Bundle();
 
     public CryptoAdapter(Context ctx) {
         layoutInflater= LayoutInflater.from(ctx);
@@ -115,7 +115,7 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
 
 
                 holder.title.setText(fcrypto.getName());
-        holder.subtitle.setText(fcrypto.getCoinname());
+
         String img_url = NetworkConstants.main_url + fcrypto.getImgurl();
 
 
@@ -170,12 +170,12 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
                 } else
                     {
                     // do something wih the result
-                        Log.e("Response",response.body().string());
+                        Log.e("Response",response.body().toString());
 
 
                             try
                             {
-                                String dddr =response.body().string();
+                            String dddr =response.body().string();
                            JSONObject dd = new JSONObject(dddr);
                            String price = dd.getString("USD");
                                 String p1 = dd.getString(Australiandollar);
@@ -188,7 +188,7 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
                                 String p8 = dd.getString(IndianRupee);
                                 String p9 = dd.getString(Iranianrial);
                                 String p10 = dd.getString(Jamaicandollar);
-                                String p11 = dd.getString(Japaneseyen);
+                                String p11 = "0.01";
                                 String p12 = dd.getString(KenyanShilling);
                                 String p13 = dd.getString(Malaysianringgit);
                                 String p14 = dd.getString(NigerianNaira);
@@ -223,8 +223,8 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
 
 
                                 fcrypto.setCoinname(price);
-                                notifyDataSetChanged();
-                                Log.e("Trying to set adapter",price);
+
+                               // Log.e("Trying to set adapter",price);
                          //  holder.subtitle.setText("123333");
                          //  holder.subtitle.setText(price);
                         }
@@ -235,7 +235,7 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
             }
         } );
 
-
+        holder.subtitle.setText(fcrypto.getCoinname());
         holder.cardclick.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -258,6 +258,7 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
 
             }
         });
+
     }
 
     @Override
@@ -280,7 +281,12 @@ public class CryptoAdapter extends  RecyclerView.Adapter<CryptoAdapter.viewholde
             img = (ImageView) itemView.findViewById(R.id.img_view);
             title= (TextView) itemView.findViewById(R.id.crypto_name);
             subtitle=(TextView)itemView.findViewById(R.id.txt_price);
+
+
+
+
         }
+
 
 
         @Override
